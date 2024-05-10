@@ -1,4 +1,5 @@
 package com.ctu.reservationportal.infrastructure;
+
 // imports the Pattern class from the java.util.regex package 
 import java.util.regex.Pattern;
 
@@ -8,7 +9,7 @@ import java.util.regex.Pattern;
 public class Validators {
     
     /**
-    * A Method for validation names
+    * A Method for validation of names
     * String type inputs
     */
     public static boolean isValidName(String name) {
