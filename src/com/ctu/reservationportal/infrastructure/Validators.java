@@ -103,4 +103,5 @@ public class Validators {
 
     public boolean isValid(String input) {
         return true;
-        }
+    }
+} 
