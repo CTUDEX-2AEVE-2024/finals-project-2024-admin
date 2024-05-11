@@ -1,8 +1,8 @@
 package com.ctu.reservationportal.model;
 
 /**
- * a class to hold and get Admin Informations/Details
- */
+* Class to hold and get Admin Informations/Details
+*/
 public class AdminInfo {
 
         private String firstName;
@@ -17,13 +17,13 @@ public class AdminInfo {
         private String Email;
         private Long PhoneNumber;
         private String nationality;
-
         private String gender;
         private String roleAtSchool;
+        private String idNumber;
 
     /**
      *
-     * @return first name of the person
+     * @return first name
      */
     public String getFirstName() {
             return firstName;
@@ -235,14 +235,13 @@ public class AdminInfo {
     public String getRoleAtSchool() {
             return roleAtSchool;
         }
-        public void setroleAtSchool(String roleAtSchool) { this.roleAtSchool = roleAtSchool;}
+        public void setRoleAtSchool(String roleAtSchool) { this.roleAtSchool = roleAtSchool;}
 
-        public void setisValidId(String adminId) {
-        }
+    public String getIDNumber() { return idNumber;}
 
-        public void setAdminID(String adminId) {
-        }
+        public void setIDNumber(String idNumber) { this.idNumber = idNumber;}
 
-        public void displayUserInfo() {
+
+        public void displayAdminInfo() {
         }
-}
+  }
