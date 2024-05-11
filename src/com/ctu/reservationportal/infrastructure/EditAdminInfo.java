@@ -1,14 +1,20 @@
 package com.ctu.reservationportal.infrastructure;
 import com.ctu.reservationportal.model.AdminInfo;
-
 import java.util.Scanner;
+
+/**
+ * A Class for users to edit their provided details during the registration process
+ */
 public class EditAdminInfo {
     private final Scanner scanner;
     private final AdminInfo adminInfo;
     private final Validators validators;
     private boolean exitEditing;
 
-    public EditAdminInfo(AdminInfo adminInfo) {
+    /**
+     * A Method that performs the editing process
+     */
+    public EditAdminInfo (AdminInfo adminInfo) {
         this.adminInfo = adminInfo;
         this.scanner = new Scanner(System.in);
         this.validators = new Validators();
@@ -18,7 +24,7 @@ public class EditAdminInfo {
         boolean exitEditing = false;
 
         do {
-            System.out.println("\nEDIT USER INFORMATION\n");
+            System.out.println("\nEDIT DETAILS\n");
 
             // Print options for editing
             printEditOptions();
@@ -29,8 +35,14 @@ public class EditAdminInfo {
 
             switch (choice) {
                 case 0:
-                    System.out.println("Exiting editing.");
+                    System.out.println("Exit editing.");
                     RegistrationCode.displayRegistrationCode();
+                    CreateAccount.createAccount(scanner);
+
+
+                    AdminInfo adminInfo = new AdminInfo();
+                    String roleAtSchool = adminInfo.getRoleAtSchool(); // Assuming this method exists
+                    PreferredRole.selectPreferRole(roleAtSchool, adminInfo);
                     exitEditing = true; // Set flag to exit editing
                     break;
                 case 1:
@@ -39,7 +51,6 @@ public class EditAdminInfo {
                 case 2:
                     editField("Middle Name", this::editMiddleName);
                     break;
-                // Add cases for other fields
                 case 3:
                     editField("Last Name", this::editLastName);
                     break;
@@ -79,7 +90,9 @@ public class EditAdminInfo {
         } while (!exitEditing); // Continue editing until flag is set
     }
 
-    // Method to print edit options
+    /**
+     * Method to print edit options
+     */
     private void printEditOptions() {
         System.out.println("What information do you want to edit?");
         System.out.println("1. First Name");
@@ -98,14 +111,16 @@ public class EditAdminInfo {
         System.out.println("0. Exit Editing\n");
     }
 
-    // Method to edit a field
+    /**
+     * Method to edit a field
+     */
     private void editField(String fieldName, Runnable editMethod) {
         System.out.println("\nEditing " + fieldName);
         editMethod.run();
         System.out.println(fieldName + " updated successfully!\n");
 
         // Display updated details
-        adminInfo.displayUserInfo();
+        adminInfo.displayAdminInfo();
 
         // Ask if user wants to continue editing
         System.out.print("Do you want to continue editing? (1 = Yes, 0 = No): ");
@@ -113,16 +128,19 @@ public class EditAdminInfo {
         scanner.nextLine(); // Consume newline
         if (choice == 0) {
             System.out.println("Exit editing.");
-            RegistrationCode generatedCode = new RegistrationCode();
             RegistrationCode.displayRegistrationCode();
-            exitEditing = true;
-            CreateAccount.createAccount(
+            CreateAccount.createAccount(scanner);
 
-            );
+            // Proceed to PreferredRole 
+            String roleAtSchool = adminInfo.getRoleAtSchool(); // Assuming this method exists
+            PreferredRole.selectPreferRole(roleAtSchool, adminInfo);
+            exitEditing = true;
         }
     }
 
-    // Methods to edit individual fields
+    /**
+     *Methods to edit individual fields
+     */
     private void editFirstName() {
         adminInfo.setFirstName(validateInput("First Name"));
     }
@@ -175,23 +193,22 @@ public class EditAdminInfo {
         adminInfo.setPhoneNumber(validateInput("Phone Number"));
     }
 
-    // Method to validate user input
+    /**
+     * Method to validate input
+     */
     private String validateInput(String fieldName) {
-        String userInput;
+        String input;
         boolean isValid;
 
         do {
             System.out.print("Enter new " + fieldName + ": ");
-            userInput = scanner.nextLine();
-            isValid = validators.isValidInput(fieldName, userInput);
+            input = scanner.nextLine();
+            isValid = validators.isValidInput(fieldName, input);
 
             if (!isValid) {
                 System.out.println("Invalid input. Please try again.");
             }
-
         } while (!isValid);
-
-        return userInput;
-
+        return input;
     }
-}
+ }
