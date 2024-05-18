@@ -41,9 +41,9 @@ public class EditAdminInfo {
 
 
                     AdminInfo adminInfo = new AdminInfo();
-                    String roleAtSchool = adminInfo.getRoleAtSchool(); // Assuming this method exists
-                    PreferredRole.selectPreferRole(roleAtSchool, adminInfo);
-                    exitEditing = true; // Set flag to exit editing
+                    String roleAtSchool = adminInfo.getRoleAtSchool();
+                    PreferredRole.selectPreferRole(adminInfo);
+                    exitEditing = true;
                     break;
                 case 1:
                     editField("First Name", this::editFirstName);
@@ -87,7 +87,7 @@ public class EditAdminInfo {
                 default:
                     System.out.println("Invalid choice.");
             }
-        } while (!exitEditing); // Continue editing until flag is set
+        } while (!exitEditing);
     }
 
     /**
@@ -131,9 +131,9 @@ public class EditAdminInfo {
             RegistrationCode.displayRegistrationCode();
             CreateAccount.createAccount(scanner);
 
-            // Proceed to PreferredRole 
+            // Proceed to PreferRole
             String roleAtSchool = adminInfo.getRoleAtSchool(); // Assuming this method exists
-            PreferredRole.selectPreferRole(roleAtSchool, adminInfo);
+            PreferredRole.selectPreferRole(adminInfo);
             exitEditing = true;
         }
     }
@@ -209,6 +209,8 @@ public class EditAdminInfo {
                 System.out.println("Invalid input. Please try again.");
             }
         } while (!isValid);
+
         return input;
     }
- }
+
+}
