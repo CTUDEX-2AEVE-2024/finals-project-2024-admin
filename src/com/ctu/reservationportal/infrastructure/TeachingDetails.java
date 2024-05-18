@@ -9,18 +9,16 @@ import java.util.Scanner;
 public class TeachingDetails {
 
 
-    /** The number of subjects to collect. */
+    // The number of subjects to collect
     private static int numberOfSubjects;
 
-    /** An array to store the names of the subjects. */
+    //An array to store the names of the subjects
     private static String[] subjectNames;
 
     /**
      * Collects teaching details including the number of subjects and the subject names.
      */
-    public static void collectTeachingDetails() {
-
-        Scanner scanner = new Scanner(System.in);
+    public static void collectTeachingDetails(Scanner scanner) {
 
         // Read the number of subjects entered by the user
         numberOfSubjects = readNumberOfSubjects(scanner);
@@ -31,7 +29,7 @@ public class TeachingDetails {
         // Loop to input subject names based on the number of subjects
         for (int i = 0; i < numberOfSubjects; i++) {
             // Prompt the user to enter the name of each subject and to be stored in the array
-            System.out.println("Enter subject names " + (i + 1) + ":");
+            System.out.println("Enter subject name " + (i + 1) + ":");
 
             // Read the subject name entered by the user
             subjectNames[i] = scanner.nextLine();
@@ -50,7 +48,7 @@ public class TeachingDetails {
         AdminInfo adminInfo = new AdminInfo(); // Replace UserInfo() with the appropriate constructor
 
         // Redirect to PreferRole class
-        PreferredRole.selectPreferRole("Teacher", adminInfo); // Pass adminInfo as parameter
+        PreferredRole.selectPreferRole(adminInfo); // Pass adminInfo as parameter
 
         scanner.close();
     }

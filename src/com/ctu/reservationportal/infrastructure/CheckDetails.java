@@ -8,7 +8,8 @@ import java.util.Scanner;
  */
 public class CheckDetails {
 
-    /*
+    /**
+     * Method responsible for checking provided details
      * @param adminInfo which is the AdminInfo object containing the admin details.
      */
     public static void checkDetails(AdminInfo adminInfo) {
@@ -55,12 +56,11 @@ public class CheckDetails {
 
                 /*If the Registration code is correct
                 Proceed to create an account */
-
                 CreateAccount.createAccount(scanner);
 
                 /* After creating an account
                 Redirect to the PreferredRole class */
-                PreferredRole.selectPreferRole(adminInfo.getRoleAtSchool(), adminInfo);
+                PreferredRole.selectPreferRole(adminInfo);
 
                 // Break out of the loop after displaying the registration code
                 break;
@@ -78,4 +78,4 @@ public class CheckDetails {
             // Repeats the process until all the details are confirmed
         } while (!detailsConfirmed);
     }
-                    }
+}
